@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const uri = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.DBURL}/${process.env.DBNAME}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.USERNAMEDB}:${process.env.PASSWORD}@${process.env.DBURL}/${process.env.DBNAME}?retryWrites=true&w=majority`;
 
 const main = async () => {
   try {
