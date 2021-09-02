@@ -5,6 +5,13 @@ const validations = {};
 validations.registerValidation = [
   body("name", "Se requiere un nombre").not().isEmpty(),
   body("username", "Se requiere un nombre de usuario").not().isEmpty(),
+  // verificar si el username se encuentra en uso
+  body("username").custom(async (value) => {
+    const usernameExist = await User.findOne({ username: value });
+    if (usernameExist) {
+      return Promise.reject("El Username se encuentra en uso");
+    }
+  }),
   body("email", "Se requiere un Email valido").isEmail().normalizeEmail(),
   //verificar si el email se encuentra en uso
   body("email").custom(async (value) => {

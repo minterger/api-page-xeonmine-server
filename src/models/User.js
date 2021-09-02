@@ -14,16 +14,20 @@ const userSchema = new Schema(
       required: true,
       trim: true,
       unique: true,
+      lowercase: true,
     },
-    role: {
-      type: String,
-      ref: "Role",
-    },
+    roles: [
+      {
+        type: ObjectId,
+        ref: "Role",
+      },
+    ],
     email: {
       type: String,
       required: true,
       trim: true,
       unique: true,
+      lowercase: true,
     },
     password: {
       type: String,
