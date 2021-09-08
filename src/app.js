@@ -21,5 +21,6 @@ app.use(cors());
 
 //Routes
 app.use(require("./routes/auth.routes"));
+app.use(require("./routes/users.routes"));
 
 module.exports = app;
