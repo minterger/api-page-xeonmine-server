@@ -4,6 +4,7 @@ const validations = {};
 
 validations.registerValidation = [
   body("name", "Se requiere un nombre").not().isEmpty(),
+  body("lastName", "Se requiere un apellido").not().isEmpty(),
   body("username", "Se requiere un nombre de usuario").not().isEmpty(),
   // verificar si el username se encuentra en uso
   body("username").custom(async (value) => {

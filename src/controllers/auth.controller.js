@@ -5,7 +5,7 @@ const User = require("../models/User.js");
 const { validationResult } = require("express-validator");
 
 authCtrl.signUp = async (req, res) => {
-  const { name, username, email, password } = req.body;
+  const { name, lastName, username, email, password } = req.body;
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
