@@ -12,7 +12,7 @@ const userSchema = new Schema(
     lastName: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     username: {
       type: String,
@@ -39,6 +39,12 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
+    shoppingCart: [
+      {
+        type: ObjectId,
+        ref: "StoreItem",
+      },
+    ],
     comments: [
       {
         type: ObjectId,
