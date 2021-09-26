@@ -8,9 +8,10 @@ const iSetup = {};
 iSetup.createRoles = async () => {
   try {
     const count = await Role.estimatedDocumentCount();
-
+    // if roles is created return
     if (count > 0) return;
 
+    // create roles
     const values = await Promise.all([
       new Role({ name: "user" }).save(),
       new Role({ name: "moderator" }).save(),
@@ -26,18 +27,23 @@ iSetup.createRoles = async () => {
 iSetup.createAdminUser = async () => {
   try {
     const user = await User.findOne({ email: "xeonmine@mail.com" });
-    const roles = await Role.find({ name: { $in: ["admin", "moderator"] } });
+    const rolesFound = await Role.find({
+      name: { $in: ["admin", "moderator"] },
+    });
 
     if (!user) {
-      await User.create({
+      const roles = rolesFound.map((role) => role._id);
+      
+      const admin = await User.create({
         name: "Admin",
         lastName: "XeonMine",
         username: "XeonMine",
         email: "xeonmine@mail.com",
         password: await bcrypt.hash("Xeonpass123!", 10),
-        role: roles.map((role) => role._id),
+        roles,
       });
-      console.log("Usuario Admin Creado!");
+
+      console.log("Usuario Admin Creado!", admin);
     }
   } catch (err) {
     console.log(err);
