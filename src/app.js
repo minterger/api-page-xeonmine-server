@@ -23,5 +23,6 @@ app.use(cors());
 app.use(require("./routes/auth.routes"));
 app.use(require("./routes/users.routes"));
 app.use(require("./routes/store.routes"));
+app.use('/mp', require('./routes/mp.routes'))
 
 module.exports = app;
