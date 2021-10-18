@@ -19,7 +19,8 @@
     "jsonwebtoken": "^8.5.1",
     "mercadopago": "^1.5.8",
     "mongoose": "^6.0.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
