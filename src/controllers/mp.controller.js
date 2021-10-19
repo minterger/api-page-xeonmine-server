@@ -6,7 +6,7 @@ const mpCtrl = {};
 
 mp.configure({
   sandbox: true,
-  access_token: process.env.MPTOKEN,
+  access_token: `${process.env.MPTOKEN}`,
 });
 
 const getFullUrl = (req) => {
@@ -67,8 +67,31 @@ mpCtrl.createPreference = async (req, res) => {
   }
 };
 
-mpCtrl.notificacionWH = (req, res) => {
+mpCtrl.notificacionWH = async (req, res) => {
+  if (req.method == "POST") {
+    res.status(200).send("ok");
+    if (req.body.data) {
+      const id = req.body.data.id;
+      try {
+        const data = await mp.payment.get(id);
+        const external_reference = data.response.external_reference;
+        const status = data.response.status;
 
-}
+        if (status == 'approved') {
+          
+        }
+        if (status == 'in_process') {
+          
+        }
+        if (status == 'rejected') {
+          
+        }
+      } catch (error) {
+        console.log(error);
+        res.status(500).send('internal server error');
+      }
+    }
+  }
+};
 
 module.exports = mpCtrl;
