@@ -5,8 +5,8 @@ const User = require("../models/User");
 const mpCtrl = {};
 
 mp.configure({
-  access_token: "",
   sandbox: true,
+  access_token: process.env.MPTOKEN,
 });
 
 const getFullUrl = (req) => {
@@ -66,5 +66,9 @@ mpCtrl.createPreference = async (req, res) => {
     res.json(error);
   }
 };
+
+mpCtrl.notificacionWH = (req, res) => {
+
+}
 
 module.exports = mpCtrl;
